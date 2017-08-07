@@ -1,7 +1,7 @@
 "use strict";
 
 let abe = angular.module("Abe", ["ngRoute"])
-.constant('FirebaseUrl', 'https://pinheads-1f7c1.firebaseio.com/');
+.constant('FirebaseUrl', 'https://front-end-capstone-3f332.firebaseio.com/');
 
 let isAuth = (UserFactory)  => {
     return new Promise( (resolve, reject) => {
