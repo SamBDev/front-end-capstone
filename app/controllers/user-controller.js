@@ -1,10 +1,12 @@
 'use strict';
 
-abe.controller("UserController", function($scope, $window, UserFactory) {
+abe.controller("UserController", function($scope, $window, UserFactory, forge) {
 
   $scope.account = {
     email: "",
-    password: ""
+    password: "",
+    rsaPublicKey: "",
+    rsaPrivateKey: ""
   };
 
   $scope.register = () => {
@@ -21,7 +23,7 @@ abe.controller("UserController", function($scope, $window, UserFactory) {
     UserFactory.loginUser($scope.account)
     .then( (userData) => {
       console.log("userData", userData);
-      // $window.location.href = '#!/todos/view';
+      $window.location.href = '#!/messages/${userData.uid}';
     });
   };
 

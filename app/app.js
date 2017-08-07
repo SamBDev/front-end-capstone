@@ -8,8 +8,10 @@ let isAuth = (UserFactory)  => {
         UserFactory.isAuthenticated()
         .then( (userExistence) => {
             if (userExistence) {
+                console.log("resolved");
                 resolve();
             } else {
+                console.log("rejected");
                 reject();
             }
         });
