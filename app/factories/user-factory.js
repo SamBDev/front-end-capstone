@@ -13,15 +13,28 @@ abe.factory('UserFactory', function($q, $http, FirebaseUrl, FBCreds) {
     let currentUser = null;
 
     let registerUser = (userObj) => {
-        return $q((resolve, reject)=>{
+        return $q((resolve, reject) => {
             $http.post(`${FirebaseUrl}users.json`,
-                angular.toJson(userObj))
-            .then((userObjData) => {
-                resolve(userObjData);
-            })
-            .catch((err)=>{
-                reject(err);
-            });
+                    angular.toJson(userObj))
+                .then((userObjData) => {
+                    resolve(userObjData);
+                })
+                .catch((err) => {
+                    reject(err);
+                });
+        });
+    };
+
+    let registerKeypair = (keypair) => {
+        return $q((resolve, reject) => {
+            $http.post(`${FirebaseUrl}keypairs.json`,
+                    angular.toJson(keypair))
+                .then((keypairObjData) => {
+                    resolve(keypairObjData);
+                })
+                .catch((err) => {
+                    reject(err);
+                });
         });
     };
 
@@ -77,5 +90,5 @@ abe.factory('UserFactory', function($q, $http, FirebaseUrl, FBCreds) {
             });
     };
 
-    return { registerUser, loginUser, isAuthenticated, getUser, logoutUser, createUser };
+    return { registerKeypair, registerUser, loginUser, isAuthenticated, getUser, logoutUser, createUser };
 });

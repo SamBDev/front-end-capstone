@@ -26,7 +26,15 @@ abe.controller("UserController", function($scope, $window, UserFactory) {
                 if (userData) {
                     $scope.login();
                     $scope.account.password = null;
-                    console.log("$scope.account", $scope.account);
+
+                    let userObj = {
+                        uid: userData.uid
+                    };
+
+                    let keyObj = {
+                        uid: userData.uid
+                    };
+
                     // $scope.account.password = forge.md5.create($scope.account.password);
                     // $scope.account.password = $scope.account.password.digest();
                     forge.rsa.generateKeyPair({ bits: 2048, workers: 3 }, function(err, keypair) {
@@ -38,11 +46,12 @@ abe.controller("UserController", function($scope, $window, UserFactory) {
                         let cipherText = keypair.publicKey.encrypt(plainText);
                         let toHex = forge.util.bytesToHex(cipherText);
                         let plainText2 = keypair.privateKey.decrypt(cipherText);
-                        console.log("plainText", plainText);
-                        console.log("testString", cipherText);
-                        console.log("uhhh", forge.util.bytesToHex(cipherText));
-                        console.log("plainText2", plainText2);
-                        UserFactory.registerUser($scope.account);
+                        // console.log("plainText", plainText);
+                        // console.log("testString", cipherText);
+                        // console.log("uhhh", forge.util.bytesToHex(cipherText));
+                        // console.log("plainText2", plainText2);
+                        UserFactory.registerUser(userObj);
+                        UserFactory.registerKeypair(keyObj);
                     });
                 }
             });
