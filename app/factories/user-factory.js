@@ -12,10 +12,24 @@ abe.factory('UserFactory', function($q, $http, FirebaseUrl, FBCreds) {
 
     let currentUser = null;
 
+    let registerUser = (userObj) => {
+        return $q((resolve, reject)=>{
+            $http.post(`${FirebaseUrl}users.json`,
+                angular.toJson(userObj))
+            .then((userObjData) => {
+                resolve(userObjData);
+            })
+            .catch((err)=>{
+                reject(err);
+            });
+        });
+    };
+
     let createUser = (userObj) => {
         return firebase.auth().createUserWithEmailAndPassword(userObj.email, userObj.password)
             .catch((err) => {
                 console.log("error creating user", err.message);
+                alert(err.message);
             });
     };
 
@@ -45,6 +59,7 @@ abe.factory('UserFactory', function($q, $http, FirebaseUrl, FBCreds) {
                 })
                 .catch((err) => {
                     console.log("error loggin in", err.message);
+                    alert(err.message);
                 });
         });
     };
@@ -62,5 +77,5 @@ abe.factory('UserFactory', function($q, $http, FirebaseUrl, FBCreds) {
             });
     };
 
-    return { loginUser, isAuthenticated, getUser, logoutUser, createUser };
+    return { registerUser, loginUser, isAuthenticated, getUser, logoutUser, createUser };
 });

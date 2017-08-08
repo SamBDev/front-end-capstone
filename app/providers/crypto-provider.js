@@ -1,9 +1,10 @@
-
+"use strict";
 
 $scope.caesarShift = function(inputString, key){
     let plainTextArr = inputString.split("");
     let cipherTextArr = [];
     let cipherText = "";
+    let cipherCharCode = null;
 
     plainTextArr.forEach((char)=>{
         cipherCharCode = char.charCodeAt() + key;
