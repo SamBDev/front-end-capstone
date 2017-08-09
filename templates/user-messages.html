@@ -1,3 +1,9 @@
 <div ng-include="'templates/navbar.html'"></div>
-
-<p>user messages</p>
+<div id="content">
+    <h3>Your Messages:</h3>
+    <div class="userMessageContainer">
+        <button ng-click="newMessage = !newMessage">New Message</button>
+        <div ng-include="'templates/newMessage.html'" ng-hide="!newMessage"></div>
+        <div ng-repeat="message in messages" ng-include="'templates/message.html'"></div>
+    </div>
+</div>

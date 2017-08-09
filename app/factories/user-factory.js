@@ -2,7 +2,6 @@
 
 abe.factory('UserFactory', function($q, $http, FirebaseUrl, FBCreds) {
 
-    // https://pinheads-1f7c1.firebaseapp.com/__/auth/handler
     const config = {
         apiKey: FBCreds.apiKey,
         authDomain: FBCreds.authDomain
