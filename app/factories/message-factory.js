@@ -54,11 +54,17 @@ abe.factory('MessageFactory', function($q, $http, FirebaseUrl) {
         });
     };
 
-    let getKeypairs = (userId) => {
+    let getKeypair = (userId) => {
         return $q((resolve, reject) => {
-            $http.get(`$FirebaseUrl}keypairs.json?orderBy="uid"&equalTo="${userId}"`)
-                .then((keypair) => {
-                    resolve(keypair);
+            $http.get(`${FirebaseUrl}keypairs.json?orderBy="uid"&equalTo="${userId}"`)
+                .then((keypairs) => {
+                    let usableKeypair = [];
+                    for(let pair in keypairs.data){
+                        console.log(pair);
+                        usableKeypair.push(keypairs.data[pair]);
+                    }
+                    console.log("usableKeypair", usableKeypair);
+                    resolve(usableKeypair[0].keypair);
                 })
                 .catch((err) => {
                     reject(err);
@@ -81,5 +87,17 @@ abe.factory('MessageFactory', function($q, $http, FirebaseUrl) {
         });
     };
 
-    return { postMessage, getMessages, deleteMessage, getKeypairs, getSingleMessage, updateMessage};
+    let getMethods = () => {
+        return $q((resolve, reject) => {
+            $http.get(`${FirebaseUrl}methods.json`)
+                .then((methodsData) => {
+                    resolve(methodsData.data);
+                })
+                .catch((err) => {
+                    reject(err);
+                });
+        });
+    };
+
+    return { postMessage, getMessages, deleteMessage, getKeypair, getSingleMessage, updateMessage, getMethods};
 });

@@ -36,7 +36,7 @@ abe.config(($routeProvider)=>{
     })
     .when('/messages/:messageId/options', {
         templateUrl: 'templates/message-options.html',
-        controller: 'MessageOptionsControllers',
+        controller: 'MessageOptionsController',
         resolve: {isAuth}
     })
     .otherwise('/');

@@ -33,14 +33,26 @@ h3 {
     text-align: center;
 }
 
-.userMessageContainer {
+.text-container {
     text-align: center;
     margin: 2% 5% 5% 5%;
     border: 3px solid black;
-    min-height: 540px;
-    max-height: 500px;
+    min-height: 440px;
+    max-height: 400px;
     overflow: scroll;
     overflow-x: hidden;
+}
+
+.options-content {
+    text-align: center;
+}
+
+.options-text {
+    text-align: center;
+    margin: 5%;
+    border: 3px solid black;
+    min-height: 140px;
+    max-height: 100px;
 }
 
 .message {
@@ -48,3 +60,14 @@ h3 {
     margin: 2% 10% 2% 10%;
 }
 
+.options-heading {
+    text-align: center;
+    // display: block;
+}
+
+.options-heading * {
+    text-align: center;
+    display: block;
+    width: 20%;
+    margin: 0 auto;
+}
