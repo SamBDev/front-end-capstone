@@ -10,8 +10,7 @@
 
 <body ng-app="Abe">
 
-  <div id="pageWrapper" class="container" ng-view>
-  </div>
+  <div ng-view></div>
 
   <!-- dependencies -->
   <script type="text/javascript" src="./lib/node_modules/jquery/dist/jquery.min.js"></script>
@@ -26,15 +25,16 @@
   <!-- providers -->
   <script type="text/javascript" src="./app/values/fb-creds.js"></script>
   <script type="text/javascript" src="./app/factories/user-factory.js"></script>
-  <!-- <script type="text/javascript" src="./app/factories/message-factory.js"></script> -->
-  <!-- <script type="text/javascript" src="./app/factories/crypto-provider.js"></script> -->
-  <script type="text/javascript" src="./app/web-worker/keygen.js"></script>
+  <script type="text/javascript" src="./app/factories/message-factory.js"></script>
+  <!-- services -->
+  <script type="text/javascript" src="./app/services/crypto-service.js"></script>
+  <!-- <script type="text/javascript" src="./app/web-worker/keygen.js"></script> -->
   <!-- controllers -->
   <script type="text/javascript" src="./app/controllers/user-controller.js"></script>
   <script type="text/javascript" src="./app/controllers/nav-controller.js"></script>
   <!-- <script type="text/javascript" src="./app/controllers/info-page-controllers.js"></script> -->
   <script type="text/javascript" src="./app/controllers/messages-controller.js"></script>
-  <!-- <script type="text/javascript" src="./app/controllers/message-options-controller.js"></script> -->
+  <script type="text/javascript" src="./app/controllers/message-options-controller.js"></script>
 
 </body>
 

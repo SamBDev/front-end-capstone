@@ -1,0 +1,7 @@
+<div class="message">
+    <span class="message-text message-componenet">{{message.text}}</span>
+    <div class="message-buttons message-componenet">
+        <a href="#!/messages/{{message.id}}/options"><button class="btn message-button">Encrypt/Decrypt</button></a>
+        <button class="btn message-button" ng-click="removeMessage(message.id)">Delete</button>
+    </div>
+</div>

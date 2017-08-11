@@ -1,0 +1,84 @@
+@import "../lib/node_modules/tether/dist/css/tether.min.css";
+@import "../lib/node_modules/bootstrap/scss/bootstrap.scss";
+$navBackground: #4D9DE0;
+$navButton: #7A93AC;
+
+// * {
+//     padding: 0;
+//     margin: 0;
+// }
+
+nav a {
+    text-align: center;
+    color: black;
+    border: 1px solid black;
+    margin: 2%;
+    background-color: $navButton
+}
+
+nav {
+    background-color: $navBackground;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.nav {
+    margin: 0 0 0 0;
+}
+
+.content {
+    text-align: center;
+}
+
+.text-container {
+    text-align: center;
+    margin: 2% 5% 5% 5%;
+    border: 3px solid black;
+    min-height: 440px;
+    max-height: 400px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.options-content {
+    text-align: center;
+}
+
+.options-text {
+    text-align: center;
+    margin: 5%;
+    border: 3px solid black;
+    min-height: 140px;
+    max-height: 100px;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+}
+
+.message {
+    border: 1px solid black;
+    margin: 2% 10% 2% 10%;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+}
+
+.message-text {
+    min-height: 140px;
+    max-height: 100px;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+}
+
+.options-heading {
+    text-align: center;
+    // display: block;
+}
+
+.options-heading * {
+    text-align: center;
+    display: block;
+    width: 20%;
+    margin: 0 auto;
+}
