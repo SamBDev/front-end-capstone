@@ -46,6 +46,8 @@ abe.factory('MessageFactory', function($q, $http, FirebaseUrl) {
         return $q((resolve, reject) => {
             $http.get(`${FirebaseUrl}messages/${messageId}.json`)
                 .then((messageData) => {
+                    messageData.data.id = messageId;
+                    console.log("messageData.data", messageData.data);
                     resolve(messageData.data);
                 })
                 .catch((err) => {

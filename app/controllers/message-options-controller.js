@@ -23,7 +23,12 @@ abe.controller("MessageOptionsController", function($scope, $window, $routeParam
     };
 
     $scope.saveResult = function(messageObj) {
-        console.log("messageObj", messageObj);
+        messageObj.text = messageObj.resultText;
+        delete messageObj.resultText;
+        MessageFactory.updateMessage(messageObj, messageObj.id)
+            .then((response) => {
+                console.log("response", response);
+            });
     };
 
     $scope.callEncrypt = function(methodName, key) {
@@ -31,7 +36,12 @@ abe.controller("MessageOptionsController", function($scope, $window, $routeParam
         if (methodName === "RSA") {
             MessageFactory.getKeypair(UserFactory.getUser())
                 .then((keypair) => {
-                    $scope.message.resultText = dynamicEncryptCalls[formattedMethodName]($scope.message.text, keypair);
+                    $scope.message.resultText = dynamicEncryptCalls[formattedMethodName]($scope.message.text, keypair)
+                    .then((returned) => {
+                    console.log("returned", returned);
+                    $scope.message.resultText = returned;
+
+                    });
                 });
         } else {
             $scope.message.resultText = dynamicEncryptCalls[formattedMethodName]($scope.message.text, key);
@@ -43,7 +53,10 @@ abe.controller("MessageOptionsController", function($scope, $window, $routeParam
         if (methodName === "RSA") {
             MessageFactory.getKeypair(UserFactory.getUser())
                 .then((keypair) => {
-                    $scope.message.resultText = dynamicEncryptCalls[formattedMethodName]($scope.message.text, keypair);
+                    $scope.message.resultText = dynamicDecryptCalls[formattedMethodName]($scope.message.text, keypair)
+                    .then((returned) => {
+                        console.log("returned", returned);
+                    });
                 });
         } else {
             $scope.message.resultText = dynamicDecryptCalls[formattedMethodName]($scope.message.text, key);
