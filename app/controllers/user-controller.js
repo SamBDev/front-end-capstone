@@ -38,9 +38,15 @@ abe.controller("UserController", function($scope, $window, UserFactory) {
                     // $scope.account.password = forge.md5.create($scope.account.password);
                     // $scope.account.password = $scope.account.password.digest();
                     forge.rsa.generateKeyPair({ bits: 2048, workers: 5 }, function(err, keypair) {
-                        keyObj.keypair = keypair;
-                        console.log("keypair", keypair);
+                        let pemPair = {};
+                        let publicPem = forge.pki.publicKeyToPem(keypair.publicKey);
+                        let privatePem = forge.pki.privateKeyToPem(keypair.privateKey);
+                        pemPair.publicPem = publicPem;
+                        pemPair.privatePem = privatePem;
+                        keyObj.keypair = pemPair;
                         console.log("keyObj", keyObj);
+                        // console.log("keypair", keypair);
+                        // console.log("keyObj", keyObj);
                         // console.log("account", $scope.account);
                         let plainText = forge.util.encodeUtf8("another, longer test that i wish to try");
                         let cipherText = keypair.publicKey.encrypt(plainText);
@@ -48,10 +54,10 @@ abe.controller("UserController", function($scope, $window, UserFactory) {
                         let toDecrypt = forge.util.hexToBytes(toHex);
                         console.log("toDecrypt", toDecrypt);
                         let plainText2 = keypair.privateKey.decrypt(toDecrypt);
-                        console.log("plainText", plainText);
-                        console.log("testString", cipherText);
-                        console.log("uhhh", toHex);
-                        console.log("plainText2", plainText2);
+                        // console.log("plainText", plainText);
+                        // console.log("testString", cipherText);
+                        // console.log("uhhh", toHex);
+                        // console.log("plainText2", plainText2);
                         UserFactory.registerUser(userObj);
                         UserFactory.registerKeypair(keyObj);
                     });
