@@ -5,41 +5,36 @@ abe.service('CryptoService', function($q) {
     this.encryptRSA = function(messageText, userKeypair) {
         return $q((resolve, reject) => {
 
-            // console.log("userKeypair", userKeypair);
-            forge.rsa.generateKeyPair({ bits: 2048, workers: 5 }, function(err, generatedKeypair) {
-                console.log("generatedKeypair", generatedKeypair);
-                userKeypair.publicKey.encrypt = generatedKeypair.publicKey.encrypt;
-                userKeypair.privateKey.decrypt = generatedKeypair.privateKey.decrypt;
-                let plaintextToEncrypt = forge.util.encodeUtf8(messageText);
-                let cipherTextBytes = userKeypair.publicKey.encrypt(plaintextToEncrypt);
-                console.log("cipherTextBytes", cipherTextBytes);
-                let cipherTextHex = forge.util.bytesToHex(cipherTextBytes);
-                console.log("otherOtherCipherText", cipherTextHex);
+            let userPublicKey = forge.pki.publicKeyFromPem(userKeypair.publicPem);
+            let cipherTextBytes = userPublicKey.encrypt(messageText);
+            let cipherTextHex = forge.util.bytesToHex(cipherTextBytes);
 
-                resolve(cipherTextHex);
-            });
+            // userKeypair.publicKey.encrypt = generatedKeypair.publicKey.encrypt;
+            // userKeypair.privateKey.decrypt = generatedKeypair.privateKey.decrypt;
+            // let plaintextToEncrypt = forge.util.encodeUtf8(messageText);
+            // let cipherTextBytes = userKeypair.publicKey.encrypt(plaintextToEncrypt);
+            // console.log("cipherTextBytes", cipherTextBytes);
+            // console.log("otherOtherCipherText", cipherTextHex);
+
+            resolve(cipherTextHex);
         });
     };
 
     this.decryptRSA = function(messageText, userKeypair) {
         return $q((resolve, reject) => {
 
-            let decryptBytes;
-            console.log("messageText", messageText);
-            console.log("userKeypair", userKeypair);
-            forge.rsa.generateKeyPair({ bits: 2048, workers: 5 }, function(err, generatedKeypair) {
-                console.log("generatedKeypair", generatedKeypair);
-                userKeypair.publicKey.encrypt = generatedKeypair.publicKey.encrypt;
-                userKeypair.privateKey.decrypt = generatedKeypair.privateKey.decrypt;
-                console.log("userKeypair", userKeypair);
-                decryptBytes = forge.util.hexToBytes(messageText);
-                // console.log("messageText", messageText);
-                console.log("decryptBytes", decryptBytes);
-                let decryptCipherText = userKeypair.privateKey.decrypt(decryptBytes);
-                console.log("decryptCipherText", decryptCipherText);
+            let userPrivateKey = forge.pki.privateKeyFromPem(userKeypair.privatePem);
+            let cipherTextBytes = forge.util.hexToBytes(messageText);
+            let plainText = userPrivateKey.decrypt(cipherTextBytes);
 
-                resolve(decryptCipherText);
-            });
+            // userKeypair.publicKey.encrypt = generatedKeypair.publicKey.encrypt;
+            // userKeypair.privateKey.decrypt = generatedKeypair.privateKey.decrypt;
+            // let plaintextToEncrypt = forge.util.encodeUtf8(messageText);
+            // let cipherTextBytes = userKeypair.publicKey.encrypt(plaintextToEncrypt);
+            // console.log("cipherTextBytes", cipherTextBytes);
+            // console.log("otherOtherCipherText", cipherTextHex);
+
+            resolve(plainText);
         });
     };
 

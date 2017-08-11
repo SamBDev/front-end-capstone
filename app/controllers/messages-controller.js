@@ -20,7 +20,9 @@ abe.controller("MessagesController", function($scope, $window, MessageFactory, U
         console.log("create called", $scope.userMessage);
         MessageFactory.postMessage($scope.userMessage)
             .then((messageData) => {
-                $scope.userMessage = "";
+                $scope.userMessage = {
+                    uid: UserFactory.getUser()
+                };
                 $scope.displayMessages();
                 console.log("messageData", messageData);
             });

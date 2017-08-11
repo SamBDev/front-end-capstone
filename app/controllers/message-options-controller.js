@@ -37,11 +37,11 @@ abe.controller("MessageOptionsController", function($scope, $window, $routeParam
             MessageFactory.getKeypair(UserFactory.getUser())
                 .then((keypair) => {
                     $scope.message.resultText = dynamicEncryptCalls[formattedMethodName]($scope.message.text, keypair)
-                    .then((returned) => {
-                    console.log("returned", returned);
-                    $scope.message.resultText = returned;
+                        .then((returned) => {
+                            console.log("returned", returned);
+                            $scope.message.resultText = returned;
 
-                    });
+                        });
                 });
         } else {
             $scope.message.resultText = dynamicEncryptCalls[formattedMethodName]($scope.message.text, key);
@@ -54,9 +54,10 @@ abe.controller("MessageOptionsController", function($scope, $window, $routeParam
             MessageFactory.getKeypair(UserFactory.getUser())
                 .then((keypair) => {
                     $scope.message.resultText = dynamicDecryptCalls[formattedMethodName]($scope.message.text, keypair)
-                    .then((returned) => {
-                        console.log("returned", returned);
-                    });
+                        .then((returned) => {
+                            console.log("returned", returned);
+                            $scope.message.resultText = returned;
+                        });
                 });
         } else {
             $scope.message.resultText = dynamicDecryptCalls[formattedMethodName]($scope.message.text, key);
