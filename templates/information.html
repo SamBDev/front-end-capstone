@@ -1,0 +1,10 @@
+<div ng-include src="'templates/navbar.html'"></div>
+<div class="content">
+    <div class="centered">
+        <h3>Encryption Information</h3>
+        <select ng-options="method.description as method.name for method in methods" ng-model="selectedMethod.description"></select>
+        <div class="information-text">
+            <p ng-bind="selectedMethod.description"></p>
+        </div>
+    </div>
+</div>
