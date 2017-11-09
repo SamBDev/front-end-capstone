@@ -1,0 +1,26 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "users": {
+      ".indexOn": [
+        "uid"
+      ]
+    },
+    "keypairs": {
+      ".indexOn": [
+        "uid"
+      ]
+    },
+    "information": {
+      ".indexOn": [
+        "id"
+      ]
+    },
+    "messages": {
+      ".indexOn": [
+        "uid"
+      ]
+    }
+  }
+}
