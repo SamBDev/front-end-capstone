@@ -1,0 +1,6 @@
+'use strict';
+
+abe.constant('FBCreds', {
+  apiKey: '',
+  authDomain: ''
+});
