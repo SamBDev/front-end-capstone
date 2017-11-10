@@ -16,7 +16,7 @@ Online Application for about Encryption. Allows users to login and register. Use
 
 ## Installation
 - To clone the project down, run  ```git clone [repo link]```
-- Run ```npm install``` from the root of the directory to install all of the dependencies
+- Run ```npm install``` from the lib folder to install all of the dependencies
 
 ## Get Started
 - You will need to fill out the fb-cred.js.example file for your use. This will require you to have a Firebase project. After starting a project the only changes it will need from a clean project are the activation of Email/Password under Auth -> Sign-in Method AND copy pasting this json into the database -> rules
