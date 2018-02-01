@@ -1,5 +1,5 @@
 # ABE
-##Online Encrpytion Learning Tool
+## Online Encrpytion Learning Tool
 
 Online Application for about Encryption. Allows users to login and register. Users can then create, save, encrypt, and decrypt messages.
 
@@ -19,7 +19,9 @@ Online Application for about Encryption. Allows users to login and register. Use
 - Run ```npm install``` from the lib folder to install all of the dependencies
 
 ## Get Started
-- You will need to fill out the fb-cred.js.example file for your use. This will require you to have a Firebase project. After starting a project the only changes it will need from a clean project are the activation of Email/Password under Auth -> Sign-in Method AND copy pasting this json into the database -> rules
+- Online: https://front-end-capstone-3f332.firebaseapp.com/#!/
+
+- Local: You will need to fill out the fb-cred.js.example file for your local use. This will require you to have a Firebase project. After starting a project the only changes it will need from a clean project are the activation of Email/Password under Auth -> Sign-in Method AND copy pasting this json into the database -> rules
 ```{
   "rules": {
     ".read": true,
